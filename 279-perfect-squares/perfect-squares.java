@@ -1,29 +1,13 @@
-public class Solution {
+class Solution {
     public int numSquares(int n) {
-        Queue<Integer> queue = new LinkedList<>();
-        Set<Integer> visited = new HashSet<>();
-        queue.offer(n);
-        visited.add(n);
-        int level = 0;
-
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            level++;
-
-            for (int i = 0; i < size; i++) {
-                int curr = queue.poll();
-
-                for (int j = 1; j * j <= curr; j++) {
-                    int next = curr - j * j;
-                    if (next == 0) return level;
-                    if (!visited.contains(next)) {
-                        queue.offer(next);
-                        visited.add(next);
-                    }
-                }
+        int[] dp = new int[n+1];
+        Arrays.fill(dp,Integer.MAX_VALUE);
+        dp[0] = 0;
+        for(int i = 0; i <= n ; i++){
+            for(int j=1; j*j <= i; j++){
+                dp[i] = Math.min(dp[i],dp[i-j*j] + 1);
             }
         }
-
-        return level;
+        return dp[n];
     }
 }
