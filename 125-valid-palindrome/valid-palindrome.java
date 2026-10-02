@@ -1,24 +1,29 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        return helper(s.toLowerCase(),0,s.length()-1);
-    }
-    private boolean helper(String s,int left,int right){
-        if(left >= right) return true;
 
-        char cLeft = s.charAt(left);
-        char cRight = s.charAt(right);
+        String str = "";
 
-        if (!Character.isLetterOrDigit(cLeft)) {
-            return helper(s, left + 1, right);
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (Character.isLetterOrDigit(ch)) {
+                str = str + Character.toLowerCase(ch);
+            }
         }
 
-        if (!Character.isLetterOrDigit(cRight)) {
-            return helper(s, left, right - 1);
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+
+            left++;
+            right--;
         }
 
-        if (cLeft != cRight) return false;
-
-        return helper(s, left + 1, right - 1);
-
+        return true;
     }
 }
