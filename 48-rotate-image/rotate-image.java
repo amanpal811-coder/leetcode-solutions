@@ -7,28 +7,20 @@ class Solution {
 
     public void transpose(int[][] matrix) {
         int n = matrix.length;
-        int i = 0;
 
-        while (i < n) {
-            int j = i + 1;
-
-            while (j < n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[j][i];
                 matrix[j][i] = temp;
-
-                j++;
             }
-
-            i++;
         }
     }
 
     public void reverse(int[][] matrix) {
         int n = matrix.length;
-        int i = 0;
 
-        while (i < n) {
+        for (int i = 0; i < n; i++) {
             int left = 0;
             int right = n - 1;
 
@@ -40,8 +32,6 @@ class Solution {
                 left++;
                 right--;
             }
-
-            i++;
         }
     }
 }
